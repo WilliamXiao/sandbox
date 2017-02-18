@@ -1,5 +1,7 @@
 This is william's test git repository where various tricks are tested.
 
++ Use command line in Git Shell
+
 Reference Links:
 1. start github
   https://www.howtoforge.com/tutorial/install-git-and-github-on-ubuntu-14.04/
@@ -12,6 +14,18 @@ Reference Links:
   git add .
   git status
   git commit -m "commit an editing in existing file."
+  git push origin master
+  
   https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/
   https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
   http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1/
+  
+3. add third party dependency git repository as submodule.
+  # Add glfw into third_party folder
+  git submodule add https://github.com/glfw/glfw.git third_party/glfw
+  git status
+  git add .
+  git commit -m "git submodule add https://github.com/glfw/glfw.git third_party/glfw"
+  git push origin master
+  
+  
