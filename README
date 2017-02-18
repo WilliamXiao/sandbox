@@ -1,5 +1,17 @@
-This is william's test git repo by following instructions at 
-https://www.howtoforge.com/tutorial/install-git-and-github-on-ubuntu-14.04/
+This is william's test git repository where various tricks are tested.
 
-Usefull Linux Links:
+Reference Links:
+1. start github
+  https://www.howtoforge.com/tutorial/install-git-and-github-on-ubuntu-14.04/
 
+2. basic commands: 
+  git config --global user.email "william.jian.xiao@gmail.com"
+  git config --global user.name "William Xiao"
+  
+  # modify an existing file, then stage it, then check status, commit, finally push
+  git add .
+  git status
+  git commit -m "commit an editing in existing file."
+  https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/
+  https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
+  http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1/
