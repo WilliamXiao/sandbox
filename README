@@ -10,7 +10,7 @@ Reference Links:
   git config --global user.email "william.jian.xiao@gmail.com"
   git config --global user.name "William Xiao"
   
-  # modify an existing file, then stage it, then check status, commit, finally push
+  # modify an existing file, then stage it (git add .), then check status, commit, finally push
   git add .
   git status
   git commit -m "commit an editing in existing file."
@@ -21,11 +21,13 @@ Reference Links:
   http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1/
   
 3. add third party dependency git repository as submodule.
-  # Add glfw into third_party folder
+  # Add glfw (http://www.glfw.org/) into third_party folder
   git submodule add https://github.com/glfw/glfw.git third_party/glfw
   git status
   git add .
   git commit -m "git submodule add https://github.com/glfw/glfw.git third_party/glfw"
   git push origin master
   
+  # Add GLEW - The OpenGL Extension Wrangler Library ( http://glew.sourceforge.net/, https://github.com/nigels-com/glew)
+  git submodule add https://github.com/Perlmint/glew-cmake.git third_party/glew
   
