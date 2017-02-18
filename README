@@ -1,9 +1,11 @@
 This is william's test git repository where various tricks are tested.
 
 + Use command line in Git Shell
++ C++11 CMake skeleton using GLFW, Glew and glm
 
 Reference Links:
 1. start github
+  https://help.github.com/
   https://www.howtoforge.com/tutorial/install-git-and-github-on-ubuntu-14.04/
 
 2. basic commands: 
@@ -20,7 +22,8 @@ Reference Links:
   https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
   http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1/
   
-3. add third party dependency git repository as submodule.
+3. add third party dependency git repository as submodule. 
+  # learned from https://github.com/ArthurSonzogni, thanks to Arthur Sonzogni.
   # Add glfw (http://www.glfw.org/) into third_party folder
   git submodule add https://github.com/glfw/glfw.git third_party/glfw
   git status
@@ -28,6 +31,14 @@ Reference Links:
   git commit -m "git submodule add https://github.com/glfw/glfw.git third_party/glfw"
   git push origin master
   
-  # Add GLEW - The OpenGL Extension Wrangler Library ( http://glew.sourceforge.net/, https://github.com/nigels-com/glew)
+  # Add GLEW - The OpenGL Extension Wrangler Library 
+  # http://glew.sourceforge.net/, https://github.com/nigels-com/glew
   git submodule add https://github.com/Perlmint/glew-cmake.git third_party/glew
+  
+  # Add GLM - OpenGL Mathematics https://glm.g-truc.net into third_party folder
+  git submodule add https://github.com/g-truc/glm.git third_party/glm
+  git status
+  git add .
+  git commit -m "git submodule add https://github.com/g-truc/glm.git third_party/glm"
+  git push
   
