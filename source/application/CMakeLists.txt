@@ -1,5 +1,5 @@
 #=============================================================================
-# VizX sandbox
+# VizX Application
 #
 # Copyright 2005-2017 William Xiao
 #
@@ -10,62 +10,46 @@
 # ┌──────────────────────────────────────────────────────────────────┐
 # │  Projects Settings                                               │
 # └──────────────────────────────────────────────────────────────────┘
-CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
-SET(PROJECT_NAME "VizX")
-PROJECT (${PROJECT_NAME})
+SET(UTILITY_PROJECT_NAME "Application")
+PROJECT("${UTILITY_PROJECT_NAME}")
 
-# common project setting utility to grouping projects
-SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
-MACRO(SOURCE_GROUP_BY_DIR SOURCE_FILES)
-    IF(MSVC)
-        SET(SGBD_CUR_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-        FOREACH(SGBD_FILE ${${SOURCE_FILES}})
-            STRING(REGEX REPLACE ${SGBD_CUR_DIR}/\(.*\) \\1 SGBD_FPATH ${SGBD_FILE})
-            STRING(REGEX REPLACE "\(.*\)/.*" \\1 SGBD_GROUP_NAME ${SGBD_FPATH})
-            STRING(COMPARE EQUAL ${SGBD_FPATH} ${SGBD_GROUP_NAME} SGBD_NOGROUP)
-            STRING(REPLACE "/" "\\" SGBD_GROUP_NAME ${SGBD_GROUP_NAME})
-			
-            IF(SGBD_NOGROUP)
-                SET(SGBD_GROUP_NAME "\\")
-            ENDIF(SGBD_NOGROUP)
-            SOURCE_GROUP(${SGBD_GROUP_NAME} FILES ${SGBD_FILE})
-        ENDFOREACH(SGBD_FILE)
-    ENDIF(MSVC)
-ENDMACRO(SOURCE_GROUP_BY_DIR)
-#end of grouping utility block
+MESSAGE(${UTILITY_PROJECT_NAME})
 
 # ┌──────────────────────────────────────────────────────────────────┐
-# │  Compilation flags                                               │
+# │  Collect projects source files                                   │
 # └──────────────────────────────────────────────────────────────────┘
-LIST(APPEND CMAKE_CXX_FLAGS "-std=c++11")
-ADD_DEFINITIONS(-Wall)
+SET( INCLUDE_DIRS
+	${CMAKE_CURRENT_LIST_DIR}
+)
+MESSAGE("current path: ${INCLUDE_DIRS}")
+
+INCLUDE_DIRECTORIES( ${INCLUDE_DIRS} )
+
+FILE(GLOB PROJECT_SOURCE_FILES *.txt)
+FILE(GLOB PROJECT_SOURCE_FILES ${PROJECT_SOURCE_FILES}
+    ./*.hpp
+	./*.h
+    ./*.cpp
+	graphics/*.hpp
+    graphics/*.cpp
+	system/*.hpp
+    system/*.cpp
+    utils/*.hpp
+	utils/*.cpp
+    )
 
 # ┌──────────────────────────────────────────────────────────────────┐
-# │  Load libraries - common to overall solution                     │
+# │  Build Target and library link                                   │
 # └──────────────────────────────────────────────────────────────────┘
-# glfw
-SET(GLFW_BUILD_EXAMPLES OFF CACHE STRING "" FORCE)
-SET(GLFW_BUILD_TESTS    OFF CACHE STRING "" FORCE)
-SET(GLFW_INSTALL        OFF CACHE STRING "" FORCE)
-ADD_SUBDIRECTORY(third_party/glfw)
-INCLUDE_DIRECTORIES(third_party/glfw/include)
-
-# glew
-ADD_DEFINITIONS(-DGLEW_STATIC)
-OPTION(glew-cmake_BUILD_SHARED "" OFF)
-ADD_SUBDIRECTORY(third_party/glew)
-INCLUDE_DIRECTORIES(third_party/glew/include third_party/glew/src)
-
-# glm
-# fatal error C1189: #error:  "GLM: GLM_GTX_matrix_operation is an
-# experimental extension and may change in the future."
-ADD_DEFINITIONS(-DGLM_ENABLE_EXPERIMENTAL)
-
-INCLUDE_DIRECTORIES(third_party/glm)
+ADD_EXECUTABLE(${UTILITY_PROJECT_NAME} ${PROJECT_SOURCE_FILES})
+TARGET_LINK_LIBRARIES(${UTILITY_PROJECT_NAME} glfw ${GLFW_LIBRARIES} libglew_static)
 
 # ┌──────────────────────────────────────────────────────────────────┐
 # │  Projects organization                                           │
 # └──────────────────────────────────────────────────────────────────┘
-
-ADD_SUBDIRECTORY(source/application)
-ADD_SUBDIRECTORY(source/utility)
+# grouping this project into "App" folder - test only in visual studio
+SET_PROPERTY(TARGET ${UTILITY_PROJECT_NAME}  PROPERTY FOLDER "App")
+FILE(GLOB_RECURSE project_headers *.hpp *.h)
+FILE(GLOB_RECURSE project_cpps *.cpp)
+SET(all_files ${project_headers} ${project_cpps})
+SOURCE_GROUP_BY_DIR(all_files)

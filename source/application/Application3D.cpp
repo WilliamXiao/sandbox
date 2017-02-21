@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 #include "utils/glError.hpp"
 
-#define SHADER_DIR "../source/graphics/shader/"
+#define SHADER_DIR "../../../source/application/graphics/shader/"
 
 struct VertexType
 {
@@ -45,6 +45,8 @@ Application3D::Application3D():
     fragmentShader(SHADER_DIR"/shader.frag",GL_FRAGMENT_SHADER),
     shaderProgram({vertexShader,fragmentShader})
 {
+    
+
     glCheckError(__FILE__,__LINE__);
     ////////////////////////////
     //
