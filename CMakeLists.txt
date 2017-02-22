@@ -44,8 +44,9 @@ ADD_DEFINITIONS(-Wall)
 # │  Load libraries - common to overall solution                     │
 # └──────────────────────────────────────────────────────────────────┘
 # glfw
-SET(GLFW_BUILD_EXAMPLES OFF CACHE STRING "" FORCE)
-SET(GLFW_BUILD_TESTS    OFF CACHE STRING "" FORCE)
+#SET(GLFW_BUILD_EXAMPLES OFF CACHE STRING "" FORCE)
+SET(GLFW_BUILD_EXAMPLES ON CACHE STRING "" FORCE)
+SET(GLFW_BUILD_TESTS    ON CACHE STRING "" FORCE)
 SET(GLFW_INSTALL        OFF CACHE STRING "" FORCE)
 ADD_SUBDIRECTORY(third_party/glfw)
 INCLUDE_DIRECTORIES(third_party/glfw/include)

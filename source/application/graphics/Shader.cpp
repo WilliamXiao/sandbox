@@ -9,27 +9,9 @@
 using namespace std;
 using namespace glm;
 
-#if 0 //debug shader's relative path -> SHADER_DIR
-#include <windows.h>
-#include <string>
-#include <iostream>
-using namespace std;;
-
-string ExePath() {
-    char buffer[MAX_PATH];
-    GetModuleFileName(NULL, buffer, MAX_PATH);
-    string::size_type pos = string(buffer).find_last_of("\\/");
-    return string(buffer).substr(0, pos);
-}
-#endif
-
 // file reading
 void getFileContents(const char *filename, vector<char>& buffer)
 {
-#if 0
-    cout << "my directory is " << ExePath() << "\n";
-#endif
-     
     //debug("chargement du fichier : %s",filename);
     ifstream file(filename, ios_base::binary);
     if (file)
